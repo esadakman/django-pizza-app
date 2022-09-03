@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from pizza.forms import PizzaForm
 from .models import Pizza
-
+from django.contrib import messages
 
 def form_pizza(request):
     form = PizzaForm()
@@ -13,17 +13,24 @@ def form_pizza(request):
 
 
 def form(request):
+    # global created_pizza_pk 
+    created_pizza_pk = 0
     form = PizzaForm()
     if request.method == "POST":
         form = PizzaForm(request.POST)
         if form.is_valid():
-            form.save()
-            # messages.success(request,"Todo created successfully")
-            return redirect("home")
-    context = {
-        'forms': form
-    }
-    return render(request, 'pizza/order.html', context)
+            created_pizza = form.save()
+            created_pizza_pk = created_pizza.id
+            print(created_pizza_pk)
+            messages.success(request, 'Order has .')
+
+            # return redirect("home")
+    # context = {
+    #     'forms': form,
+    #     'pizzaId': created_pizza_pk,
+    # }
+    # return render(request, 'pizza/order.html', context)
+    return render(request, 'pizza/order.html', {'forms': form, 'pizzaId': created_pizza_pk})
 
 def edit(request , id ):
     order = Pizza.objects.get(id=id)
@@ -33,7 +40,8 @@ def edit(request , id ):
         if update_form.is_valid():
             update_form.save()
             form = update_form
-            # messages.success(request,"Todo created successfully")
+            messages.success(request, 'Order has been updated.')
+
             return redirect("home")
     context = {
         'forms': form

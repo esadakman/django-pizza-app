@@ -27,8 +27,28 @@
           >
         </div>
       </nav> 
+      <div class="messages">
+        {% if messages %}
+        <div class="">
+        {% for message in messages %}
+        <p{% if message.tags %} class="text-center alert alert-{{
+        message.tags }}" {% endif %}>
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important:
+        {%endif %}
+        {{ message }}
+        </p>
+        {% endfor %}
+        </ul>
+        </div>
+        {% endif %}
+        </div>
+        <div style="text-align: center">
+        {% if pizzaId %}
+        <button><a href="{% url 'edit' pizzaId %}">Edit Your
+        Order</a></button><br>
+        {% endif %}
+        </div>
     {% block content %}
-    
     
 
     
