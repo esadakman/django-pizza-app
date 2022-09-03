@@ -9,4 +9,13 @@ def form_pizza(request):
     context = {
         'forms': form
     }
+    return render(request, 'pizza/home.html', context)
+
+
+def form(request):
+    form = PizzaForm()
+
+    context = {
+        'forms': form
+    }
     return render(request, 'pizza/order.html', context)
