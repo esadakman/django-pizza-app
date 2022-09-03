@@ -1,0 +1,17 @@
+{% extends 'pizza/base.html' %} 
+{% load static %}
+{% block content %}
+<div class="w-100 h-50">
+  <form
+    action="" method='POST'
+  >
+    {% csrf_token %}
+    {{form.as_p}}
+  </form>
+
+<div class="w-50 h-50">
+        <img src="{% static 'pizza/nandiasgarden.jpg' %}"  alt="pizza"> 
+    </div>
+</div>
+
+{% endblock content %}

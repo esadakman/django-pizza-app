@@ -1,3 +1,12 @@
 from django.shortcuts import render
+from pizza.forms import PizzaForm
 
-# Create your views here.
+
+
+def form_pizza(request):
+    form = PizzaForm()
+
+    context = {
+        'forms': form
+    }
+    return render(request, 'pizza/order.html', context)
