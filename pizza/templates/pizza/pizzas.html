@@ -31,9 +31,15 @@
                     <div class="col-md-5">{{form.topping2|as_crispy_field}} </div>
                     <div class="col-md-2">{{form.size|as_crispy_field}} </div>
                 {% endfor %} 
-                <div class="col-md-2 d-flex align-items-center mb-3 justify-content-center">
-                    <input class="btn btn-primary" type="submit" value="Order Pizzas">
-                </div>
+                {% comment %} <div class="col-md-6  mb-3 justify-content-center"> {% endcomment %}
+                    <div class="col-md-12 mb-3 d-flex justify-content-between">
+                        <input class="btn btn-primary" type="submit" value="Order Pizzas">
+                        <a href="{% url 'order' %}" class="btn btn-secondary  btn-md">
+                            <i class="fas fa-stream"></i> Back to Order
+                        </a>
+                    </div>
+                    
+                {% comment %} </div>  {% endcomment %}
             </div>
         </form>
     </div>

@@ -1,7 +1,7 @@
 {% extends 'pizza/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="container d-flex  flex-column col-12 col-sm-6  border border-dark rounded mt-5">
+    <div class="container d-flex  flex-column col-12 col-sm-6  border border-dark rounded my-5">
         <div class="row card-header bg-danger text-bg-dark d-flex justify-content-center">
             <h1 class="text-center text-light">Order Pizza</h1>
         </div> 
@@ -10,13 +10,13 @@
         <div class="container" >
             <form action="{% url 'order' %}" method="POST">
                     {% csrf_token %}
-                    <div class="row mt-1">
+                    <div class="row mt-2">
                         <div class="col-md-6">{{pizzaform.topping1|as_crispy_field}}</div>
                         <div class="col-md-6">{{pizzaform.topping2|as_crispy_field}} </div>
                         <div class="col-md-6 ">
                             {{pizzaform.size|as_crispy_field}}  
                         </div>
-                        <div class="col-md-2 d-flex  align-items-center mt-3">
+                        <div class="col-md-6 d-flex align-items-center mt-3 justify-content-center">
                             <input class="btn btn-success" type="submit" value="Order Pizza">
                         </div> 
                     </div>
@@ -25,12 +25,12 @@
             <div>
                 <form action="{% url 'pizzas' %}", method="GET" >
                     <h3>Want more than one pizza?</h3>
-                    <div class="row d-flex  align-items-center">
-                        <div class="col-md-4 ">
+                    <div class="row d-flex align-items-center justify-content-between">
+                        <div class="col-md-6 ">
                             {{ multiple_form.number | as_crispy_field }} 
                         </div>
                         
-                        <div class="col-md-4 mt-3">
+                        <div class="col-md-6 mt-3 d-flex  justify-content-center mb-2">
                             <input class="btn btn-primary " type="submit" value="Get Pizzas">
                         </div>
                         
@@ -38,7 +38,7 @@
                 </form>
             </div>
         </div>
-        <div class="messages container">
+        <div class="messages container mb-2">
             <div class="messages ">
                 {% if messages %}
                     <div class="messages">
@@ -61,5 +61,4 @@
             </div>
     </div>
 {% endblock %}
-
-
+ 
