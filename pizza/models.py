@@ -4,9 +4,9 @@ class Pizza(models.Model):
     topping1 = models.CharField(("Topping One"), max_length=50)
     topping2 = models.CharField(("Topping Two"), max_length=50)
     SIZES = (
-        ("1", "Small"),
-        ("2", "Medium"),
-        ("3", "Large"),
+        ("Small", "Small"),
+        ("Medium", "Medium"),
+        ("Large", "Large"),
     )
     size = models.CharField((""), max_length=50, choices=SIZES)
 
