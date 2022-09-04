@@ -1,4 +1,4 @@
 from django.contrib import admin
-# from pizza.models import Pizza
+from .models import Pizza
 # Register your models here.
-# admin.site.register(Pizza)
+admin.site.register(Pizza)
