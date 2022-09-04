@@ -1,10 +1,10 @@
 <!-- Please update value in the {}  -->
 
-<h1 align="center">Pizza App</h1>
+<h1 align="center">Alfredo's Pizza Cafe</h1>
 
 <div align="center">
   <h3>
-    <a href="https://esadakman-django-crud.herokuapp.com/">
+    <a href="https://esadakman-pizza-app.herokuapp.com/order/">
       Demo
     </a>
      | 
@@ -30,7 +30,8 @@
 
 ## Overview
 
-![screenshot](https://user-images.githubusercontent.com/16707738/92399059-5716eb00-f132-11ea-8b14-bcacdc8ec97b.png)
+![pizza](https://user-images.githubusercontent.com/98649983/188321384-1ee5cbcc-78c1-40e8-8c05-5b38a77434ec.gif)
+
 
 ### Built With
 
@@ -42,9 +43,7 @@
 - Django
 - Bootstrap
 
-## How To Use
-
-<!-- This is an example, please update according to your application -->
+## How To Use 
 
 To clone and run this application, you'll need [Git](https://git-scm.com)
 
@@ -58,7 +57,7 @@ $ git clone https://github.com/esadakman/django-pizza-app
     $ source env/bin/activate (for macOs/linux OS)
     $ pip install -r requirements.txt
 
-# Add .env file
+# Add .env file for secret key
 
 # Run the app
     $ python manage.py runserver
@@ -66,7 +65,9 @@ $ git clone https://github.com/esadakman/django-pizza-app
 
 ## Acknowledgements
 
-- Information for your projects
+- In this project, i created a Django app named "Alfredos Pizza Cafe" which will let users to order pizza.
+- Most websites require the use of forms to receive data from users, so it is crucial to know how to safely collect and handle data while maintaining a user-friendly experience on your website. 
+- In this project, i try to understand how to use Django to create forms.
 
 ## Contact
 
