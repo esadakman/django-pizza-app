@@ -1,49 +1,73 @@
-from django.shortcuts import render, redirect
-from pizza.forms import PizzaForm
+from django.shortcuts import render
+from .forms import PizzaForm, MultiplePizzaForm # referring to newly created forms.py and our new PizzaForm
+from django.forms import formset_factory
 from .models import Pizza
 from django.contrib import messages
 
-def form_pizza(request):
-    form = PizzaForm()
-    
-    context = {
-        'forms': form
-    }
-    return render(request, 'pizza/home.html', context)
+def home(request):
+    return render(request, 'pizza/home.html')
 
 
-def form(request):
-    # global created_pizza_pk 
-    created_pizza_pk = 0
-    form = PizzaForm()
-    if request.method == "POST":
-        form = PizzaForm(request.POST)
-        if form.is_valid():
-            created_pizza = form.save()
+def order(request):
+    multiple_form = MultiplePizzaForm()
+    if request.method == 'POST':
+    # filled_form = PizzaForm(request.POST, request.FILES)
+        filled_form = PizzaForm(request.POST)
+        if filled_form.is_valid():
+            created_pizza = filled_form.save()
             created_pizza_pk = created_pizza.id
-            print(created_pizza_pk)
-            messages.success(request, 'Order has .')
 
-            # return redirect("home")
-    # context = {
-    #     'forms': form,
-    #     'pizzaId': created_pizza_pk,
-    # }
-    # return render(request, 'pizza/order.html', context)
-    return render(request, 'pizza/order.html', {'forms': form, 'pizzaId': created_pizza_pk})
+            size = filled_form.cleaned_data.get('size')
+            topping1 = filled_form.cleaned_data.get('topping1')
+            topping2 = filled_form.cleaned_data.get('topping2')
 
-def edit(request , id ):
-    order = Pizza.objects.get(id=id)
-    form = PizzaForm(instance=order)
+            messages.success(request, f'Thanks for ordering! Your {size}, {topping1} and {topping2} pizza is on its way!')
+
+            filled_form = PizzaForm()
+            # return render(request, 'pizza/order.html', {'created_pizza_pk':created_pizza_pk, 'pizzaform':new_form, 'note':note, 'multiple_form':multiple_form})
+        else:
+            created_pizza_pk = None
+            messages.warning(request, 'Pizza order failded, try again!')
+
+        return render(request, 'pizza/order.html', {'created_pizza_pk':created_pizza_pk, 'pizzaform':filled_form, 'multiple_form':multiple_form})
+    else:
+        form = PizzaForm()
+        return render(request, 'pizza/order.html', {'pizzaform':form,
+        'multiple_form':multiple_form})
+
+        
+def pizzas(request):
+    number_of_pizzas = 2
+    filled_multiple_pizza_form = MultiplePizzaForm(request.GET)
+    if filled_multiple_pizza_form.is_valid():
+        number_of_pizzas = filled_multiple_pizza_form.cleaned_data.get('number')
+    PizzaFormSet = formset_factory(PizzaForm, extra=number_of_pizzas)
+    formset = PizzaFormSet()
     if request.method == "POST":
-        update_form = PizzaForm(request.POST, instance=order) 
-        if update_form.is_valid():
-            update_form.save()
-            form = update_form
+        filled_formset = PizzaFormSet(request.POST)
+        if filled_formset.is_valid():
+            for form in filled_formset:
+                form.save()
+            messages.success(request, 'Pizzas have been ordered!')
+
+        else:
+            messages.warning(request, 'Order was not created, please try again')
+
+        return render(request, 'pizza/pizzas.html', {'formset':formset})
+    else:
+        return render(request, 'pizza/pizzas.html', {'formset':formset})
+
+def edit_order(request, pk):
+    pizza = Pizza.objects.get(pk=pk)
+    form = PizzaForm(instance=pizza)
+    if request.method == 'POST':
+        filled_form = PizzaForm(request.POST,instance=pizza)
+        if filled_form.is_valid():
+            filled_form.save()
+            form = filled_form
             messages.success(request, 'Order has been updated.')
 
-            return redirect("home")
-    context = {
-        'forms': form
-    }
-    return render(request, 'pizza/edit_order.html', context)
+        return render(request, 'pizza/edit_order.html',
+{'pizzaform':form,'pizza':pizza})
+        return render(request, 'pizza/edit_order.html',
+{'pizzaform':form,'pizza':pizza})
