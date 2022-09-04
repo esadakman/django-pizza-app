@@ -17,51 +17,49 @@
                             {{pizzaform.size|as_crispy_field}}  
                         </div>
                         <div class="col-md-2 d-flex  align-items-center mt-3">
-                            <input class="btn btn-primary" type="submit" value="Order Pizza">
+                            <input class="btn btn-success" type="submit" value="Order Pizza">
                         </div> 
                     </div>
             </form>
             <hr>
-        <div>
-            <form action="{% url 'pizzas' %}", method="GET" >
-                <h2>Want more than one pizza?</h2>
-                <div class="row d-flex  align-items-center">
-                    <div class="col-md-4 ">
-                        {{ multiple_form.number | as_crispy_field }} 
-                    </div>
-                    
-                    <div class="col-md-4 mt-3">
-                        <input class="btn btn-primary " type="submit" value="Get Pizzas">
-                    </div>
-                    
-                </div> 
-            </form>
-            {% comment %} <div class="w-100 d-flex justify-content-center" >
-            </div> {% endcomment %}
+            <div>
+                <form action="{% url 'pizzas' %}", method="GET" >
+                    <h3>Want more than one pizza?</h3>
+                    <div class="row d-flex  align-items-center">
+                        <div class="col-md-4 ">
+                            {{ multiple_form.number | as_crispy_field }} 
+                        </div>
+                        
+                        <div class="col-md-4 mt-3">
+                            <input class="btn btn-primary " type="submit" value="Get Pizzas">
+                        </div>
+                        
+                    </div> 
+                </form>
+            </div>
         </div>
-        </div>
+        <div class="messages container">
+            <div class="messages ">
+                {% if messages %}
+                    <div class=" ">
+                        {% for message in messages %}
+                            <p {% if message.tags %} class="text-center alert alert-{{ message.tags }}" {% endif %}>
+                                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important:{% endif %}
+                                {{ message }}
+                            </p>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+            <div>
+                {% if created_pizza_pk %}
+                    <div class="text-center">
+                        <a class="btn btn-secondary btn-md mb-3" href="{% url 'edit_order' created_pizza_pk %}">Edit Your Order</a>
+                    </div> 
+                {% endif %}
+            </div>
     </div>
 {% endblock %}
 
 
-{% comment %} <div class="messages">
-    {% if messages %}
-        <div class="">
-            {% for message in messages %}
-                <p {% if message.tags %} class="text-center alert alert-{{ message.tags }}" {% endif %}>
-                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important:{% endif %}
-                    {{ message }}
-                </p>
-            {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
-</div>
-    <div style="text-align: center">
-        {% if created_pizza_pk %}
-        <button>
-            <a class="btn btn-primary" href="{% url 'edit_order' created_pizza_pk %}">Edit Your Order</a>
-        </button>
-        <br>
-        {% endif %}
-    </div>  {% endcomment %}

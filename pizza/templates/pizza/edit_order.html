@@ -1,7 +1,11 @@
 {% extends 'pizza/base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
-    <div class="container">
-        <div class="messages">
+    <div class="container d-flex  flex-column col-12 col-sm-6  border border-dark rounded mt-5">
+        <div class="row card-header bg-danger text-bg-dark d-flex justify-content-center">
+            <h1 class="text-center text-light">Edit Order</h1>
+        </div>
+        <div class="messages my-3">
             {% if messages %}
                 <div class="">
                 {% for message in messages %}
@@ -9,15 +13,22 @@
                         {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important:{% endif %} 
                         {{ message }}
                     </p>
-                {% endfor %}
-                </ul>
+                {% endfor %} 
                 </div>
             {% endif %}
-        </div>
-        <form action="{% url 'edit_order' pizza.id %}" method="post">
+        </div> 
+          <form action="{% url 'edit_order' pizza.id %}" method="post">
             {% csrf_token %}
-            {{ pizzaform.as_p }}
-            <input type="submit" value="Edit Order">
-        </form>
+            <div class="row mt-1">
+                <div class="col-md-6">{{pizzaform.topping1|as_crispy_field}}</div>
+                <div class="col-md-6">{{pizzaform.topping2|as_crispy_field}} </div>
+                <div class="col-md-6 ">
+                    {{pizzaform.size|as_crispy_field}}  
+                </div>
+                <div class="col-md-2 d-flex align-items-center mt-3 justify-content-center">
+                    <input class="btn btn-primary" type="submit" value="Edit Order">
+                </div> 
+            </div>
+        </form>  
     </div>
 {% endblock content %}
