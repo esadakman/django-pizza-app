@@ -7,7 +7,7 @@
         </div>
         <div class="messages my-3">
             {% if messages %}
-                <div class="">
+                <div class="message">
                 {% for message in messages %}
                     <p {% if message.tags %} class="text-center alert alert-{{message.tags }}" {% endif %}>
                         {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important:{% endif %} 

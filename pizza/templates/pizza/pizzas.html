@@ -1,13 +1,14 @@
 {% extends 'pizza/base.html' %}
-
-
+{% load crispy_forms_tags %}
 {% block content %}
 
-    <div class="container">
+    <div class="container d-flex  flex-column col-12 col-sm-8  border border-dark rounded mt-5">
 
-        <h1>Order Pizzas</h1>
+        <div class="row card-header bg-danger text-bg-dark d-flex justify-content-center">
+            <h1 class="text-center text-light">Order Pizzas</h1>
+        </div> 
 
-        <div class="messages">
+        <div class="messages my-3">
             {% if messages %}
                 <div class="">
                     {% for message in messages %}
@@ -17,20 +18,27 @@
                         {{ message }}
                         </p>
                     {% endfor %}
-                    </ul>
                 </div>
             {% endif %}
         </div>
 
         <form action="{% url 'pizzas' %}" method="POST">
             {% csrf_token %}
+            <div class="row mt-1">
                 {{ formset.management_form }}
-                {% for form in formset %}
-                    {{ form }}
-                <br><br>
-            {% endfor %}
-            <input type="submit" value="Order Pizzas" />
+                {% for form in formset %} 
+                    <div class="col-md-5">{{form.topping1|as_crispy_field}}</div>
+                    <div class="col-md-5">{{form.topping2|as_crispy_field}} </div>
+                    <div class="col-md-2">{{form.size|as_crispy_field}} </div>
+                {% endfor %} 
+                <div class="col-md-2 d-flex align-items-center mb-3 justify-content-center">
+                    <input class="btn btn-primary" type="submit" value="Order Pizzas">
+                </div>
+            </div>
         </form>
     </div>
 
 {% endblock content %}
+
+
+

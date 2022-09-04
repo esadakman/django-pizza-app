@@ -41,7 +41,7 @@
         <div class="messages container">
             <div class="messages ">
                 {% if messages %}
-                    <div class=" ">
+                    <div class="messages">
                         {% for message in messages %}
                             <p {% if message.tags %} class="text-center alert alert-{{ message.tags }}" {% endif %}>
                                 {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important:{% endif %}
