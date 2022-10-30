@@ -4,14 +4,9 @@
 
 <div align="center">
   <h3>
-    <a href="https://esadakman-pizza-app.herokuapp.com/order/">
-      Demo
-    </a>
-     | 
-    <a href="https://github.com/esadakman/django-pizza-app">
-      Project
-    </a>
- 
+    <a href="https://esadakman-pizza-app.herokuapp.com" >  
+     👉 Project Link 👈
+    </a>  
   </h3>
 </div>
 
@@ -32,7 +27,6 @@
 
 ![pizza](https://user-images.githubusercontent.com/98649983/188321384-1ee5cbcc-78c1-40e8-8c05-5b38a77434ec.gif)
 
-
 ### Built With
 
 <!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
@@ -43,7 +37,7 @@
 - Django
 - Bootstrap
 
-## How To Use 
+## How To Use
 
 To clone and run this application, you'll need [Git](https://git-scm.com)
 
@@ -66,7 +60,7 @@ $ git clone https://github.com/esadakman/django-pizza-app
 ## Acknowledgements
 
 - In this project, i created a Django app named "Alfredos Pizza Cafe" which will let users to order pizza.
-- Most websites require the use of forms to receive data from users, so it is crucial to know how to safely collect and handle data while maintaining a user-friendly experience on your website. 
+- Most websites require the use of forms to receive data from users, so it is crucial to know how to safely collect and handle data while maintaining a user-friendly experience on your website.
 - In this project, i try to understand how to use Django to create forms.
 
 ## Contact
