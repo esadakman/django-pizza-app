@@ -61,7 +61,7 @@ $ git clone https://github.com/esadakman/django-pizza-app
 
 - In this project, i created a Django app named "Alfredos Pizza Cafe" which will let users to order pizza.
 - Most websites require the use of forms to receive data from users, so it is crucial to know how to safely collect and handle data while maintaining a user-friendly experience on your website.
-- In this project, i try to understand how to use Django to create forms.
+- With this project I understand better how to use Django to create forms.
 
 ## Contact
 
