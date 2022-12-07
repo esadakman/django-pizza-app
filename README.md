@@ -2,13 +2,13 @@
 
 <h1 align="center">Alfredo's Pizza Cafe</h1>
 
-<div align="center">
+<!-- <div align="center">
   <h3>
     <a href="https://esadakman-pizza-app.herokuapp.com" >  
      👉 Project Link 👈
     </a>  
   </h3>
-</div>
+</div> -->
 
 <!-- TABLE OF CONTENTS -->
 
